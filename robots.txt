@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bonus-site-iota.vercel.app/sitemap.xml
