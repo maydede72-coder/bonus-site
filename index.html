@@ -2,184 +2,100 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Bonus Siteleri</title>
+
+<title>Deneme Bonusu Veren Siteler 2026 | Güncel Bonuslar</title>
+
+<meta name="description" content="En güncel deneme bonusu veren siteler, yatırım şartsız bonus, freespin bonus listesi.">
+<meta name="keywords" content="deneme bonusu, yatırım şartsız bonus, freespin, casino bonus siteleri">
+<meta name="robots" content="index, follow">
 
 <style>
-body {
-    margin:0;
-    background:#050505;
-    color:white;
-    font-family:Arial;
+body{
+margin:0;
+background:#050505;
+color:white;
+font-family:Arial;
 }
 
-/* HEADER */
 .header{
-    background:linear-gradient(90deg,#0f3d2e,#1f7a5a);
-    padding:10px;
-    text-align:center;
-    font-weight:bold;
+background:linear-gradient(90deg,#0f3d2e,#1f7a5a);
+padding:15px;
+text-align:center;
+font-weight:bold;
+font-size:18px;
 }
 
-/* CARD */
 .card{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    background:#0f0f0f;
-    padding:10px;
-    margin:10px;
-    border-radius:10px;
-    border:1px solid #1f7a5a;
-    position:relative;
-    overflow:hidden;
-
-    transform:translateX(-100px);
-    opacity:0;
-    animation:slideIn 0.6s forwards;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#0f0f0f;
+margin:10px;
+padding:10px;
+border-radius:10px;
+border:1px solid #1f7a5a;
 }
 
-@keyframes slideIn{
-    to{transform:translateX(0);opacity:1;}
-}
-
-/* ÜST IŞIK */
-.card::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:2px;
-    background:linear-gradient(90deg,transparent,#3cffb0,transparent);
-    animation:slide 3s infinite;
-}
-
-@keyframes slide{
-    0%{left:-100%;}
-    100%{left:100%;}
-}
-
-.card img{
-    width:100px;
-}
-
-.info{
-    flex:1;
-    margin-left:10px;
-}
-
-/* FİYAT */
 .price{
-    color:#7dffcb;
-    animation:blink 1.2s infinite;
-}
-@keyframes blink{
-    50%{opacity:0.4;}
+color:#7dffcb;
+font-weight:bold;
 }
 
-/* AÇIKLAMA */
 .desc{
-    color:#caffea;
-    text-shadow:0 0 5px #3cffb0,0 0 10px #3cffb0;
+font-size:13px;
+opacity:0.9;
 }
 
-/* BUTTON */
-.btn{
-    background:linear-gradient(90deg,#0f3d2e,#1f7a5a);
-    border:none;
-    padding:8px;
-    border-radius:6px;
-    color:white;
-    cursor:pointer;
+button{
+background:#1f7a5a;
+border:none;
+color:white;
+padding:8px;
+border-radius:6px;
+cursor:pointer;
 }
 
-.btn span{
-    animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-    50%{transform:scale(1.08);}
-}
-
-/* LOADER */
-.loader{
-    width:14px;
-    height:14px;
-    border:2px solid #caffea;
-    border-top:2px solid transparent;
-    border-radius:50%;
-    animation:spin 0.8s linear infinite;
-}
-
-@keyframes spin{
-    100%{transform:rotate(360deg);}
+button:hover{
+transform:scale(1.05);
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">🎁 Bonus Siteleri</div>
+<div class="header">🔥 GÜNCEL DENEME BONUSU SİTELERİ</div>
 
-<div id="list"></div>
+<div class="card">
+<img src="https://via.placeholder.com/80">
+<div>
+<div class="price">444 ₺ BONUS</div>
+<div class="desc">Yatırımsız Deneme Bonusu</div>
+</div>
+<button onclick="go('https://primeaffiliates1.com/register/47694')">AL</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/80">
+<div>
+<div class="price">200 ₺ BONUS</div>
+<div class="desc">FreeSpin Deneme Bonusu</div>
+</div>
+<button onclick="go('https://viakisalink.com/qortem')">AL</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/80">
+<div>
+<div class="price">250 ₺ BONUS</div>
+<div class="desc">Şartsız Bonus</div>
+</div>
+<button onclick="go('https://cutt.ly/OtKtz05x')">AL</button>
+</div>
 
 <script>
-
-fetch("/sites")
-.then(res=>res.json())
-.then(sites=>{
-
-    const list = document.getElementById("list");
-
-    sites.forEach((site,index)=>{
-
-        const div = document.createElement("div");
-        div.className="card";
-        div.style.animationDelay = (index*0.1)+"s";
-
-        div.innerHTML = `
-            <img src="${site.img}">
-            <div class="info">
-                <div class="price">${site.price}</div>
-                <div class="desc" id="desc-${index}"></div>
-            </div>
-
-            <button class="btn" onclick="go(this,'${site.link}')">
-                <span>Bonus Al</span>
-            </button>
-        `;
-
-        list.appendChild(div);
-
-        typeWriter(site.text, document.getElementById("desc-"+index));
-    });
-});
-
-/* TYPEWRITER */
-function typeWriter(text,el){
-    el.innerHTML="";
-    let i=0;
-
-    function write(){
-        if(i<text.length){
-            el.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(write,30);
-        }
-    }
-    write();
+function go(link){
+window.location.href = link;
 }
-
-/* GİT */
-function go(btn,link){
-    btn.innerHTML='<div class="loader"></div>';
-    btn.disabled=true;
-
-    setTimeout(()=>{
-        window.location.href=link;
-    },1500);
-}
-
 </script>
 
 </body>
