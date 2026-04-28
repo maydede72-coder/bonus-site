@@ -8,8 +8,11 @@
 <meta name="keywords" content="deneme bonusu, yatırım şartsız bonus, casino bonus, free spin, bonus siteleri">
 <meta charset="UTF-8">
 
-<!-- 🔥 MOBİL UYUM (KRİTİK EKLENDİ) -->
+<!-- 🔥 MOBİL UYUM -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 🔥 SEO EK -->
+<meta name="robots" content="index, follow">
 
 <style>
 body{
@@ -49,9 +52,15 @@ border-radius:10px;
 border:1px solid #1f7a5a;
 animation:fade .4s ease;
 overflow:hidden;
+transition:0.3s;
 }
 
-/* 🔥 NEON ÇİZGİ */
+.card:hover{
+transform:scale(1.02);
+box-shadow:0 0 15px #1f7a5a;
+}
+
+/* NEON */
 .card::before{
 content:"";
 position:absolute;
@@ -82,7 +91,6 @@ animation:blink 1s infinite;
 50%{opacity:0.3;}
 }
 
-/* 🔥 YAZI ANİMASYON */
 .desc{
 text-shadow:0 0 8px #3cffb0;
 overflow:hidden;
@@ -100,7 +108,7 @@ to{width:100%;}
 50%{border-color:transparent;}
 }
 
-/* 🔥 BUTON */
+/* BUTTON */
 button{
 background:linear-gradient(90deg,#0f3d2e,#1f7a5a);
 border:none;
@@ -115,6 +123,10 @@ animation:pulse 1.5s infinite;
 50%{transform:scale(1.08);}
 }
 
+button:active{
+transform:scale(0.95);
+}
+
 button:hover{
 transform:scale(1.1);
 }
@@ -124,7 +136,7 @@ border:1px solid gold;
 box-shadow:0 0 10px gold;
 }
 
-/* 🔥 MOBİL FIX */
+/* MOBİL */
 @media (max-width:600px){
 
 .card{
@@ -161,6 +173,22 @@ font-size:18px;
 
 }
 
+/* 🔥 POPUP */
+#popup{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#0f0f0f;
+border:1px solid #1f7a5a;
+padding:10px;
+border-radius:10px;
+display:none;
+z-index:999;
+color:#7dffcb;
+box-shadow:0 0 10px #1f7a5a;
+font-size:14px;
+}
+
 </style>
 </head>
 
@@ -172,9 +200,12 @@ font-size:18px;
 
 <div id="list"></div>
 
+<!-- 🔥 POPUP -->
+<div id="popup"><span id="poptext"></span></div>
+
 <script>
 
-/* FAKE ONLINE */
+/* ONLINE */
 setInterval(()=>{
 let sayı = 120 + Math.floor(Math.random()*60);
 document.getElementById("online").innerText="Online: "+sayı;
@@ -182,27 +213,9 @@ document.getElementById("online").innerText="Online: "+sayı;
 
 /* SİTELER */
 const sites = [
-{
-img:"img1.png",
-price:"444 ₺",
-text:"Yatırımsız Deneme Bonusu",
-link:"https://primeaffiliates1.com/register/47694",
-clicks:5
-},
-{
-img:"viabetlogo.png",
-price:"200 ₺",
-text:"FreeSpin Deneme Bonusu",
-link:"https://viakisalink.com/qortem",
-clicks:2
-},
-{
-img:"bayspin.png",
-price:"250 ₺",
-text:"Şartsız Bonus",
-link:"https://cutt.ly/OtKtz05x",
-clicks:7
-}
+{img:"img1.png",price:"444 ₺",text:"Yatırımsız Deneme Bonusu",link:"https://primeaffiliates1.com/register/47694",clicks:5},
+{img:"viabetlogo.png",price:"200 ₺",text:"FreeSpin Deneme Bonusu",link:"https://viakisalink.com/qortem",clicks:2},
+{img:"bayspin.png",price:"250 ₺",text:"Şartsız Bonus",link:"https://cutt.ly/OtKtz05x",clicks:7}
 ];
 
 const list=document.getElementById("list");
@@ -225,9 +238,29 @@ list.appendChild(div);
 
 });
 
+/* GO */
 function go(link){
 setTimeout(()=>location.href=link,800);
 }
+
+/* 🔥 POPUP SYSTEM */
+const names=["Ahmet","Mehmet","Ali","Burak","Efe","Can"];
+
+setInterval(()=>{
+let name=names[Math.floor(Math.random()*names.length)];
+let money=Math.floor(Math.random()*5000)+100;
+
+document.getElementById("poptext").innerText=
+name+" "+money+"₺ kazandı!";
+
+let p=document.getElementById("popup");
+p.style.display="block";
+
+setTimeout(()=>{
+p.style.display="none";
+},3000);
+
+},5000);
 
 </script>
 
