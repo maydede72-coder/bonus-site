@@ -7,37 +7,47 @@
 <meta name="keywords" content="deneme bonusu, yatırım şartsız bonus, casino bonus, free spin, bonus siteleri">
 <meta charset="UTF-8">
 
-<!-- 🔥 MOBİL UYUM -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- 🔥 SEO EK -->
-<meta name="robots" content="index, follow">
-
 <style>
-body{
-margin:0;
-background:#050505;
-color:white;
-font-family:Arial;
-}
+body{margin:0;background:#050505;color:white;font-family:Arial;}
 
 .header{
 background:linear-gradient(90deg,#0f3d2e,#1f7a5a);
-padding:12px;
-text-align:center;
-font-weight:bold;
+padding:12px;text-align:center;font-weight:bold;
 animation:glow 2s infinite;
 }
 
-@keyframes glow{
-50%{box-shadow:0 0 20px #1f7a5a;}
+@keyframes glow{50%{box-shadow:0 0 20px #1f7a5a;}}
+
+.hero{
+text-align:center;
+padding:10px;
+font-size:22px;
+color:#3cffb0;
+text-shadow:0 0 10px #3cffb0;
 }
 
-.online{
-text-align:center;
-color:#7dffcb;
-margin:5px;
+.categories{
+display:flex;
+gap:10px;
+overflow:auto;
+padding:10px;
 }
+
+.cat{
+padding:8px 14px;
+border-radius:20px;
+background:#0f0f0f;
+border:1px solid #1f7a5a;
+cursor:pointer;
+white-space:nowrap;
+box-shadow:0 0 8px #1f7a5a;
+}
+
+.cat.active{background:#1f7a5a;}
+
+.online{text-align:center;color:#7dffcb;margin:5px;}
 
 .card{
 position:relative;
@@ -49,17 +59,9 @@ margin:10px;
 padding:10px;
 border-radius:10px;
 border:1px solid #1f7a5a;
-animation:fade .4s ease;
 overflow:hidden;
-transition:0.3s;
 }
 
-.card:hover{
-transform:scale(1.02);
-box-shadow:0 0 15px #1f7a5a;
-}
-
-/* NEON */
 .card::before{
 content:"";
 position:absolute;
@@ -76,38 +78,9 @@ animation:slide 3s linear infinite;
 100%{left:100%;}
 }
 
-@keyframes fade{
-from{opacity:0;transform:translateY(10px);}
-to{opacity:1;}
-}
+.price{color:#7dffcb;}
+.desc{text-shadow:0 0 8px #3cffb0;}
 
-.price{
-color:#7dffcb;
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-50%{opacity:0.3;}
-}
-
-.desc{
-text-shadow:0 0 8px #3cffb0;
-overflow:hidden;
-white-space:nowrap;
-border-right:2px solid #3cffb0;
-animation:typing 2s steps(30,end), blinkCursor .6s infinite;
-}
-
-@keyframes typing{
-from{width:0;}
-to{width:100%;}
-}
-
-@keyframes blinkCursor{
-50%{border-color:transparent;}
-}
-
-/* BUTTON */
 button{
 background:linear-gradient(90deg,#0f3d2e,#1f7a5a);
 border:none;
@@ -115,114 +88,91 @@ color:white;
 padding:8px;
 border-radius:6px;
 cursor:pointer;
-animation:pulse 1.5s infinite;
 }
 
-@keyframes pulse{
-50%{transform:scale(1.08);}
-}
-
-button:active{
-transform:scale(0.95);
-}
-
-button:hover{
-transform:scale(1.1);
-}
-
-.vip{
-border:1px solid gold;
-box-shadow:0 0 10px gold;
-}
-
-/* MOBİL */
-@media (max-width:600px){
-
-.card{
-flex-direction:column;
-text-align:center;
-}
-
-.card img{
-width:120px;
-margin-bottom:10px;
-}
-
-.desc{
-white-space:normal;
-border:none;
-animation:none;
-font-size:14px;
-}
-
-.price{
-font-size:20px;
-}
-
-button{
-width:100%;
-margin-top:10px;
-padding:12px;
-font-size:16px;
-}
-
-.header{
-font-size:18px;
-}
-
-}
-
-/* 🔥 POPUP */
-#popup{
+/* TELEGRAM */
+.tg{
 position:fixed;
 bottom:20px;
-left:20px;
-background:#0f0f0f;
-border:1px solid #1f7a5a;
-padding:10px;
-border-radius:10px;
-display:none;
+right:20px;
+background:#0088cc;
+color:white;
+padding:12px 16px;
+border-radius:50px;
+font-weight:bold;
+box-shadow:0 0 15px #0088cc;
 z-index:999;
-color:#7dffcb;
-box-shadow:0 0 10px #1f7a5a;
-font-size:14px;
 }
 
+/* SAYFALAR */
+.page{display:none;padding:10px;}
+.activePage{display:block;}
+
+@media (max-width:600px){
+.card{flex-direction:column;text-align:center;}
+.card img{width:120px;margin-bottom:10px;}
+button{width:100%;margin-top:10px;}
+}
 </style>
 </head>
-<script defer src="/_vercel/insights/script.js"></script>
+
 <body>
 
 <div class="header">🔥 BONUS SİTELERİ</div>
 
+<div class="hero">💰 KAZANDIRAN SİTELER 💰</div>
+
+<div class="categories">
+<div class="cat active" onclick="filter('all')">Tümü</div>
+<div class="cat" onclick="filter('fs')">FreeSpin</div>
+<div class="cat" onclick="filter('yatirimsiz')">Yatırımsız</div>
+</div>
+
 <div class="online" id="online">Online: 134</div>
 
+<div id="home" class="page activePage">
 <div id="list"></div>
+</div>
 
-<!-- 🔥 POPUP -->
-<div id="popup"><span id="poptext"></span></div>
+<div id="about" class="page">
+<h2>Hakkımızda</h2>
+<p>Bu site en güncel deneme bonuslarını paylaşır.</p>
+</div>
+
+<div id="contact" class="page">
+<h2>İletişim</h2>
+<p>Telegram üzerinden ulaş:</p>
+<a href="https://t.me/qortem" target="_blank">Telegram'a Git</a>
+</div>
+
+<div class="categories">
+<div class="cat" onclick="showPage('home')">Ana Sayfa</div>
+<div class="cat" onclick="showPage('about')">Hakkında</div>
+<div class="cat" onclick="showPage('contact')">İletişim</div>
+</div>
+
+<a href="https://t.me/qortem" class="tg">Telegram</a>
 
 <script>
 
-/* ONLINE */
 setInterval(()=>{
 let sayı = 120 + Math.floor(Math.random()*60);
 document.getElementById("online").innerText="Online: "+sayı;
 },2000);
 
-/* SİTELER */
 const sites = [
-{img:"img1.png",price:"444 ₺",text:" PRİME BAHİS | MUSLUK AÇIK🚰 444 FS DENEME BONUSU‼️",link:"https://primeaffiliates1.com/register/47694",clicks:5},
-{img:"viabetlogo.png",price:"200 ₺",text:"FreeSpin Deneme Bonusu",link:"https://viakisalink.com/qortem",clicks:2},
-{img:"bayspin.png",price:"250 ₺",text:"Şartsız Bonus",link:"https://cutt.ly/OtKtz05x",clicks:7}
+{img:"img1.png",price:"444 ₺",text:"Yatırımsız Bonus",link:"https://primeaffiliates1.com/register/47694",cat:"yatirimsiz"},
+{img:"viabetlogo.png",price:"200 ₺",text:"FreeSpin Bonus",link:"https://viakisalink.com/qortem",cat:"fs"},
+{img:"bayspin.png",price:"250 ₺",text:"Şartsız Bonus",link:"https://cutt.ly/OtKtz05x",cat:"fs"}
 ];
 
 const list=document.getElementById("list");
 
-sites.forEach(s=>{
-
+function render(data){
+list.innerHTML="";
+data.forEach(s=>{
 const div=document.createElement("div");
-div.className="card "+(s.clicks>3?"vip":"");
+div.className="card";
 
 div.innerHTML=`
 <img src="${s.img}" width="90">
@@ -234,32 +184,24 @@ div.innerHTML=`
 `;
 
 list.appendChild(div);
-
 });
+}
 
-/* GO */
+render(sites);
+
+function filter(type){
+if(type==="all") render(sites);
+else render(sites.filter(s=>s.cat===type));
+}
+
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("activePage"));
+document.getElementById(id).classList.add("activePage");
+}
+
 function go(link){
 setTimeout(()=>location.href=link,800);
 }
-
-/* 🔥 POPUP SYSTEM */
-const names=["Ahmet","Mehmet","Ali","Burak","Efe","Can"];
-
-setInterval(()=>{
-let name=names[Math.floor(Math.random()*names.length)];
-let money=Math.floor(Math.random()*5000)+100;
-
-document.getElementById("poptext").innerText=
-name+" "+money+"₺ kazandı!";
-
-let p=document.getElementById("popup");
-p.style.display="block";
-
-setTimeout(()=>{
-p.style.display="none";
-},3000);
-
-},5000);
 
 </script>
 
