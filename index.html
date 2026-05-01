@@ -204,6 +204,86 @@ setTimeout(()=>location.href=link,800);
 }
 
 </script>
+<script>
 
+/* 🔥 ADMIN PANEL */
+
+/* gizli açma */
+let clickCount=0;
+document.querySelector(".header").onclick=()=>{
+clickCount++;
+if(clickCount>=3){
+openAdmin();
+clickCount=0;
+}
+};
+
+/* panel */
+function openAdmin(){
+
+let pass=prompt("Admin Şifre:");
+if(pass!=="admin123") return;
+
+let panel=document.createElement("div");
+panel.style.position="fixed";
+panel.style.top="50%";
+panel.style.left="50%";
+panel.style.transform="translate(-50%,-50%)";
+panel.style.background="#0f0f0f";
+panel.style.padding="20px";
+panel.style.border="1px solid #1f7a5a";
+panel.style.zIndex="9999";
+
+panel.innerHTML=`
+<h3>ADMIN PANEL</h3>
+
+<input id="a_img" placeholder="Resim URL"><br>
+<input id="a_price" placeholder="Fiyat"><br>
+<input id="a_text" placeholder="Açıklama"><br>
+<input id="a_link" placeholder="Link"><br>
+
+<button onclick="addSite()">EKLE</button>
+<button onclick="closeAdmin()">KAPAT</button>
+`;
+
+document.body.appendChild(panel);
+window.adminPanel=panel;
+}
+
+/* kapat */
+function closeAdmin(){
+adminPanel.remove();
+}
+
+/* ekle */
+function addSite(){
+
+let s={
+img:document.getElementById("a_img").value,
+price:document.getElementById("a_price").value,
+text:document.getElementById("a_text").value,
+link:document.getElementById("a_link").value,
+cat:"fs"
+};
+
+/* eski kayıt */
+let old=JSON.parse(localStorage.getItem("extraSites")||"[]");
+old.push(s);
+localStorage.setItem("extraSites",JSON.stringify(old));
+
+render([...sites,...old]);
+
+alert("Eklendi!");
+}
+
+/* load */
+window.addEventListener("load",()=>{
+let extra=JSON.parse(localStorage.getItem("extraSites")||"[]");
+if(extra.length>0){
+render([...sites,...extra]);
+}
+});
+
+</script>
 </body>
 </html>
